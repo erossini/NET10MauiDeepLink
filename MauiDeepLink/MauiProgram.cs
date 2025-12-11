@@ -42,6 +42,20 @@ namespace MauiDeepLink
                         });
                     });
 #endif
+#if WINDOWS
+                    lifecycle.AddWindows(windows =>
+                    {
+                        windows.OnLaunched((app, args) =>
+                        {
+                            var activationArgs = args as Microsoft.UI.Xaml.LaunchActivatedEventArgs;
+                            var uri = activationArgs?.Arguments;
+                            if (!string.IsNullOrEmpty(uri))
+                            {
+                                Task.Run(() => HandleAppLink(uri));
+                            }
+                        });
+                    });
+#endif
                 });
 
 #if DEBUG

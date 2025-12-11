@@ -20,7 +20,7 @@ namespace MauiDeepLink
 
             await Dispatcher.DispatchAsync(async () =>
             {
-                await Windows[0].Page!.DisplayAlert("App link received", uri.ToString(), "OK");
+                await Windows[0].Page!.DisplayAlertAsync("App link received", uri.ToString(), "OK");
             });
 
             Console.WriteLine("App link: " + uri.ToString());
